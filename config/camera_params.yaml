@@ -1,0 +1,10 @@
+/opencv_cam:
+  ros__parameters:
+    file: False
+    filename: ''
+    index: 0
+    camera_info_path: '/home/trc/opencv_cam_ws/src/opencv_cam/config/camera_info.yaml'
+    camera_frame_id: 'traffic_light/camera'
+    fps: 30
+    height: 480
+    width: 640

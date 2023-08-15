@@ -11,8 +11,7 @@ from launch_ros.descriptions import ComposableNode
 
 
 def generate_launch_description():
-    movie = 'test.mov'
-    camera_info_path = 'info.ini'
+    camera_info_path = '/home/trc/opencv_cam_ws/src/opencv_cam/config/camera_info.yaml'
 
     container = ComposableNodeContainer(
         name='my_container',
@@ -25,16 +24,15 @@ def generate_launch_description():
                 plugin='opencv_cam::OpencvCamNode',
                 name='image_publisher',
                 parameters=[{
-                    'file': True,
-                    'filename': movie,
+                    'file': False,
+                    'filename': "",
+                    'index': 0,
+                    'camera_frame_id': 'traffic_light/camera',
                     'camera_info_path': camera_info_path,
                 }],
-                extra_arguments=[{'use_intra_process_comms': True}],
-            ),
-            ComposableNode(
-                package='opencv_cam',
-                plugin='opencv_cam::ImageSubscriberNode',
-                name='image_subscriber',
+                remappings=[
+                     ('/image_raw', '/traffic_light/image_raw'),
+                ],
                 extra_arguments=[{'use_intra_process_comms': True}],
             ),
         ],

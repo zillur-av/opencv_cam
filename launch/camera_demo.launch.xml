@@ -1,0 +1,9 @@
+<launch>
+  <arg name="param_file" default="$(find-pkg-share opencv_cam)/config/camera_params.yaml" />
+  
+  <node pkg="opencv_cam" exec="opencv_cam_main" name="opencv_cam_node" >
+    <param name="params-file" value="$var param_file"/>
+	<remap from="/image_raw" to="/traffic_light/image_raw"/>
+  </node>
+
+</launch>
