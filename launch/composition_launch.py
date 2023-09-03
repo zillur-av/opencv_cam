@@ -11,7 +11,7 @@ from launch_ros.descriptions import ComposableNode
 
 
 def generate_launch_description():
-    camera_info_path = '/home/trc/opencv_cam_ws/src/opencv_cam/config/camera_info.yaml'
+    camera_info_path = '/home/zillur/ros2_ws/src/opencv_cam/config/camera_info.yaml'
 
     container = ComposableNodeContainer(
         name='my_container',
@@ -26,12 +26,13 @@ def generate_launch_description():
                 parameters=[{
                     'file': False,
                     'filename': "",
-                    'index': 0,
-                    'camera_frame_id': 'traffic_light/camera',
+                    'index': 2,
+                    'camera_frame_id': 'traffic_light_left_camera/camera_link',
                     'camera_info_path': camera_info_path,
                 }],
                 remappings=[
-                     ('/image_raw', '/traffic_light/image_raw'),
+                     ('/image_raw', '/sensing/camera/camera6/image_raw'),
+                     ('/camera_info', '/sensing/camera/camera6/camera_info')
                 ],
                 extra_arguments=[{'use_intra_process_comms': True}],
             ),
